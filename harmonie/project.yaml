@@ -1,0 +1,32 @@
+specVersion: 1.0.0
+name: SubQuery Dictionary - Harmonie
+version: 1.0.0
+runner:
+  node:
+    name: '@subql/node'
+    version: '>=3.0.0'
+    options:
+      unfinalizedBlocks: false
+      historical: false
+  query:
+    name: '@subql/query'
+    version: '*'
+description: >-
+  A SubQuery Dictionary Project that provides increased indexing speed to all
+  projects
+repository: 'https://github.com/subquery/subql-dictionary'
+schema:
+  file: ./schema.graphql
+network:
+  chainId: '0x7e18728b3f890088891d03dd5b30db9f1a0e62e05bc30eb4cf53f3c4a8280d76'
+  endpoint: 'wss://harmonie-endpoint-01.allfeat.io'
+  chaintypes:
+    file: ./dist/chaintypes.js
+dataSources:
+  - kind: substrate/Runtime
+    startBlock: 1700000
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleBlock
+          kind: substrate/BlockHandler
